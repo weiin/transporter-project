@@ -1,0 +1,20 @@
+<!-- -*- mode: XML -*- -->
+<launch>
+  <param name="publish_laser" type="bool" value="true"/> 
+  <node pkg="hokuyo_node" type="hokuyo_node" name="hokuyo_baselaser" respawn="true" output="screen">
+    <param name="calibrate_time" type="bool" value="true"/> 
+    <param name="port" type="string" value="/dev/sensors/hokuyo_H1112102"/> <!-- symlink created to connect to H1112102 -->
+    <param name="intensity" type="bool" value="false"/>
+    <param name="frame_id" type="string" value="/laser"/>
+    <param name="min_ang" type="double" value="-2.0"/>
+    <param name="max_ang" type="double" value="2.0"/>
+    <remap from="scan" to="scan_base"/>
+  </node>
+  
+  <node pkg="techx_sensors" type="scan_to_scan_filter_chain" output="screen" name="laser_filter">
+	<rosparam command="load" file="$(find techx_sensors)/launch/scan_filter.yaml" />
+
+	<remap from="scan" to="scan_base"/>
+	<remap from="scan_filtered" to="scan"/>
+  </node>  
+</launch>

@@ -1,0 +1,23 @@
+<package>
+  <description brief="transporter_navigation">
+
+     transporter_navigation
+
+  </description>
+  <author>weiin</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/transporter_navigation</url>
+  <depend package="move_base"/>
+  <depend package="move_base_msgs"/>
+  <depend package="roscpp"/>
+  <depend package="actionlib"/>
+  <depend package="tf"/>
+  <depend package="geometry_msgs"/>
+  <depend package="sensor_msgs"/>
+  <depend package="std_srvs"/>
+  <depend package="techx_comms"/>
+
+</package>
+
+

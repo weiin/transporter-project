@@ -1,0 +1,16 @@
+<launch>
+  <include file="$(find transporter_navigation)/launch/turnbycompass.launch" />
+
+  <arg name="goals_file" default="$(find transporter_navigation)/goals/test.goal"/>
+  <node pkg="transporter_navigation" type="waypoint_sender" name="wp_sender" output="screen" args="$(arg goals_file)">
+    <param name = "goal_frame" value = "map"/>
+    <param name = "repeat" value = "false"/>
+  </node>
+
+  <node pkg="transporter_navigation" type="gpspoint_sender" name="gps_sender" output="screen" args="$(arg goals_file)">
+    <param name = "goal_frame" value = "base_footprint"/>
+    <param name = "repeat" value = "false"/>
+    <param name = "useGPSgoal" value = "false"/>
+    <remap from = "gps_odom" to = "vo"/>
+  </node>
+</launch>

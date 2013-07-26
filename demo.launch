@@ -1,0 +1,11 @@
+<!-- -*- mode: XML -*- -->
+<launch>
+  <include file="$(find transporter)/launch/transporter.launch" />
+  <include file="$(find transporter)/launch/hokuyo.launch" />
+  <include file="$(find transporter_navigation)/launch/amcl_transporter.launch" />
+  <!--node pkg="rosbridge" type="rosbridge.py" name="rosbridge" output="screen"/-->
+
+<!-- if the above does not work, use below: moves at slower speed, mostly default parameters -->
+  <!-- include file="$(find demo_navigation)/transporter_configuration.launch" / -->
+  <!-- include file="$(find demo_navigation)/amcl_transporter.launch" / -->
+</launch>

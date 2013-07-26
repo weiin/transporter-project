@@ -1,0 +1,105 @@
+<!-- -*- mode: XML -*- -->
+<launch>
+
+  <!-- Run the map server -->
+  <arg name="map_file" default="$(find transporter_navigation)/maps/saved_map.yaml"/>
+  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
+
+  <include file="$(find transporter)/launch/demo_minimal.launch" />
+  <include file="$(find techx_sensors)/launch/eagle_hokuyo_base.launch" />
+  <param name="publish_laser" type="bool" value="true"/>
+  <include file="$(find techx_sensors)/launch/lasersm.launch" />
+
+  <include file="$(find techx_navigation)/launch/eagle_move_base.launch" />
+  <rosparam>
+    move_base:
+      controller_frequency: 8.0
+      planner_patience: 2.0
+      controller_patience: 2.0
+    move_base/TrajectoryPlannerROS:
+      transform_tolerance: 0.1
+      max_vel_x: 0.4
+      min_vel_x: 0.1
+      max_rotational_vel: 0.35
+      max_vel_theta: 0.35
+      min_in_place_rotational_vel: 0.1
+      min_in_place_vel_theta: 0.1
+      yaw_goal_tolerance: 0.17
+      xy_goal_tolerance: 0.3
+      vx_samples: 8
+      vtheta_samples: 12
+      path_distance_bias: 0.8
+      goal_distance_bias: 0.6
+    move_base/local_costmap:
+      obstacle_range: 3.0
+      raytrace_range: 3.5
+      max_obstacle_height: 0.5
+      footprint_padding: 0.05
+      update_frequency: 10.0
+      publish_frequency: 10.0
+      width: 3.0
+      height: 3.0
+      resolution: 0.01
+      transform_tolerance: 0.5 
+    move_base/global_costmap:
+      obstacle_range: 3.0
+      raytrace_range: 3.5
+      max_obstacle_height: 0.5
+      footprint_padding: 0.05
+      update_frequency: 1.0
+      transform_tolerance: 0.5
+  </rosparam>
+
+  <!--- Run AMCL -->
+  <!---include file="$(find amcl)/examples/amcl_diff.launch" /-->
+  <arg name="use_map_topic" default="false"/>
+  <arg name="scan_topic" default="scan_static_filtered" />
+
+  <node pkg="amcl" type="amcl" name="amcl">
+    <param name="use_map_topic" value="$(arg use_map_topic)"/>
+
+    <param name="min_particles" value="500"/> <!-- 100 -->
+    <param name="max_particles" value="2000"/> <!-- 5000 -->
+    <param name="kld_err" value="0.05"/> <!-- 0.01 -->
+    <param name="kld_z" value="0.99"/>
+    <param name="update_min_d" value="0.25"/> <!-- 0.2 -->
+    <param name="update_min_a" value="0.2"/> <!-- PI/6.0 -->
+    <param name="resample_interval" value="1"/> <!-- 2 -->
+ <!-- Increase tolerance because the computer can get quite busy -->
+    <param name="transform_tolerance" value="1.0"/> <!-- 0.1 -->
+    <param name="recovery_alpha_slow" value="0.0"/> <!-- disabled -->
+    <param name="recovery_alpha_fast" value="0.0"/>
+    <param name="initial_pose_x" value="0.0"/>
+    <param name="initial_pose_y" value="0.0"/>
+    <param name="initial_pose_a" value="0.0"/>
+
+    <param name="gui_publish_rate" value="10.0"/> <!-- -1.0Hz -->
+
+<!-- Laser model parameters -->
+    <param name="laser_max_range" value="12.0"/>
+    <param name="laser_max_beams" value="60"/> <!-- 30 -->
+    <param name="laser_z_hit" value="0.5"/> <!-- 0.95 -->
+    <param name="laser_z_short" value="0.05"/> <!-- 0.1 -->
+    <param name="laser_z_max" value="0.05"/> <!-- 0.05 -->
+    <param name="laser_z_rand" value="0.5"/> <!-- 0.05 -->
+    <param name="laser_sigma_hit" value="0.2"/>
+    <param name="laser_lambda_short" value="0.1"/>
+    <param name="laser_likelihood_max_dist" value="2.0"/>
+    <param name="laser_model_type" value="likelihood_field"/>
+    <!-- <param name="laser_model_type" value="beam"/> -->
+
+<!-- odometry model paramters -->
+    <param name="odom_model_type" value="diff"/>
+    <param name="odom_alpha1" value="0.4"/>
+    <param name="odom_alpha2" value="0.3"/>
+    <param name="odom_alpha3" value="0.2"/>
+    <param name="odom_alpha4" value="0.3"/>
+
+    <param name="odom_frame_id" value="odom"/>
+    <param name="base_frame_id" value="base_link"/>
+    <param name="global_frame_id" value="map"/>
+
+    <remap from="scan" to="$(arg scan_topic)"/>  
+
+  </node>
+</launch>

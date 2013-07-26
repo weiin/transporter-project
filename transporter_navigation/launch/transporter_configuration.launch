@@ -1,0 +1,18 @@
+<launch>
+
+  <param name="/use_sim_time" value="false"/> <!-- use wall clock -->
+
+  <!--- Run the transporter -->
+  <!--include file="$(find transporter)/launch/gps_transporter.launch" /-->
+  <include file="$(find transporter)/launch/transporter.launch" />
+
+  <!--- Run the imu -->
+  <include file="$(find transporter)/launch/imu.launch" />
+
+  <!--- Run the kinect -->
+  <!--- <include file="$(find transporter)/launch/kinect.launch" /> -->
+
+  <!--- Run the laser -->
+  <include file="$(find techx_bot)/launch/hokuyo_base.launch" />
+  
+</launch>

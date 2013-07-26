@@ -1,0 +1,2 @@
+#!/bin/sh
+rosrun rviz rviz -d `rospack find transporter_navigation`/nav.vcg

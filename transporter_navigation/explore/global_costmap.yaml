@@ -1,0 +1,17 @@
+#Independent settings for the planner's costmap
+global_costmap: 
+  global_frame: map
+  robot_base_frame: base_link #base_stabilized
+  update_frequency: 1.0
+#  publish_frequency: 5.0
+  raytrace_range: 8.0
+  obstacle_range: 5.0
+  static_map: true # this means use the map from map_server
+  rolling_window: false
+
+# map parameters required if static map is false
+#  width: 600.0
+#  height: 600.0
+#  resolution: 0.1
+#  origin_x: -400.0
+#  origin_y: -400.0

@@ -1,0 +1,8 @@
+<launch>
+  <node pkg="transporter" type="turtlebot_teleop" name="teleop" output="screen">
+
+    <param name="scale_linear" value= ".1"/>
+    <param name="scale_angular" value= ".1"/>
+
+  </node>
+</launch>

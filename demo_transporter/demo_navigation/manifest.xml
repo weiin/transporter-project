@@ -1,0 +1,15 @@
+<package>
+  <description brief="demo_navigation">
+
+     demo_navigation
+
+  </description>
+  <author>weiin</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <depend package="move_base"/>
+  <depend package="transporter"/>
+
+</package>
+
+

@@ -1,0 +1,15 @@
+/home/weiin/ros_workspace/rosbridge/build/CMakeFiles/ROSBUILD_genmsg_cpp.dir
+/home/weiin/ros_workspace/rosbridge/build/CMakeFiles/ROSBUILD_genmsg_lisp.dir
+/home/weiin/ros_workspace/rosbridge/build/CMakeFiles/ROSBUILD_gensrv_cpp.dir
+/home/weiin/ros_workspace/rosbridge/build/CMakeFiles/ROSBUILD_gensrv_lisp.dir
+/home/weiin/ros_workspace/rosbridge/build/CMakeFiles/clean-test-results.dir
+/home/weiin/ros_workspace/rosbridge/build/CMakeFiles/rosbuild_precompile.dir
+/home/weiin/ros_workspace/rosbridge/build/CMakeFiles/rosbuild_premsgsrvgen.dir
+/home/weiin/ros_workspace/rosbridge/build/CMakeFiles/rospack_genmsg.dir
+/home/weiin/ros_workspace/rosbridge/build/CMakeFiles/rospack_genmsg_libexe.dir
+/home/weiin/ros_workspace/rosbridge/build/CMakeFiles/rospack_gensrv.dir
+/home/weiin/ros_workspace/rosbridge/build/CMakeFiles/test.dir
+/home/weiin/ros_workspace/rosbridge/build/CMakeFiles/test-future.dir
+/home/weiin/ros_workspace/rosbridge/build/CMakeFiles/test-results.dir
+/home/weiin/ros_workspace/rosbridge/build/CMakeFiles/test-results-run.dir
+/home/weiin/ros_workspace/rosbridge/build/CMakeFiles/tests.dir

@@ -1,0 +1,36 @@
+<!-- -*- mode: XML -*- -->
+<launch>
+  <!--node pkg="transporter" type="transporter" name="transporter" output="screen"-->
+  <node pkg="techx_bot" type="techx_bot" name="techx_bot" output="screen">
+    <param name="LEFT_MOTOR" value= "/dev/ttyUSB0"/>
+    <param name="RIGHT_MOTOR" value= "/dev/ttyUSB1"/>
+
+    <param name="AXLE_LEN" type="int" value="520"/>
+    <param name="WHEEL_DIA" value="170"/>
+    <param name="GEAR_RATIO" value="43"/>
+    <param name="STEPS_PER_REV" value="2000"/>
+    <param name="wheel_circum_correction" value="0.9733"/>
+    <param name="wheel_base_correction" value="0.968"/>
+    <param name="odom_angular_scale_correction" value="1.030"/>
+
+    <param name="CurrentRegulatorPGain" value="937"/>
+    <param name="CurrentRegulatorIGain" value="656"/>
+    <param name="MotorMaxContinuousCurrent" value="5800"/>
+
+    <param name="PositionPGain" value="2646"/>
+    <param name="PositionIGain" value="43"/>
+    <param name="PositionDGain" value="611"/>
+    <param name="PositionProfileAcceleration" value="3000"/>
+    <param name="PositionProfileDeceleration" value="6000"/>
+    <param name="PositionProfileVelocity" value="2000"/>
+    <param name="MaxProfileVelocity" value="6000"/>
+
+    <param name="VelocityPGain" value="850"/>
+    <param name="VelocityIGain" value="200"/>
+    <param name="MaxFollowError" value="860000"/>
+    <param name="PositionProfileWindow" value="200"/>
+    <param name="PositionProfileWindowTime" value="250"/>
+    <param name="CurrentModeSetting" value="0"/>
+    <param name="ThermalTimeConstantWinding" value="1316"/>
+  </node> <!--transporter node -->
+</launch>

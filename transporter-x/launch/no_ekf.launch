@@ -1,0 +1,19 @@
+<launch>
+	<param name="use_gui" value="False"/>
+    <param name="robot_description" command="$(find xacro)/xacro.py '$(find transporter)/urdf/transporter.urdf.xacro'" />
+	<param name="odom_pub_rate" value="30"/>
+	<param name="imu_pub_rate" value="15"/>
+
+    <include file="$(find transporter)/launch/motor_params.launch" />	          
+
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"><!-- output="screen"-->
+        <param name="publish_frequency" value="15.0"/>
+    </node>
+	<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" ></node>
+
+  <!--- Run the laser -->
+  <include file="$(find transporter)/launch/hokuyo.launch" />
+
+  <include file="$(find transporter)/launch/imu.launch" />
+
+</launch>

@@ -1,0 +1,35 @@
+<launch>
+
+	<!-- necessary tf for robot_pose_ekf to connect to rest of robot -->
+	<node pkg="tf" type="static_transform_publisher" name="base_footprint_joint" args="0 0 0.118 0 0 0  /base_footprint /base_link 100" />
+
+    <param name="robot_description" command="$(find xacro)/xacro.py '$(find transporter)/urdf/transporter.urdf.xacro'" />
+	<param name="use_gui" value="False"/>
+	<param name="odom_pub_rate" value="10"/>
+	<param name="imu_pub_rate" value="20"/>
+
+    <include file="$(find transporter)/launch/motor_params.launch" />
+    <include file="$(find gpsd_client)/gps.launch" />
+
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" output="screen">
+        <param name="publish_frequency" value="5"/>
+    </node>
+
+	<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+
+  <!-- The odometry estimator -->
+   <node pkg="robot_pose_ekf" type="robot_pose_ekf" name="robot_pose_ekf">
+    <param name="freq" value="10.0"/>
+    <param name="sensor_timeout" value="1.0"/>
+    <param name="publish_tf" value="true"/>
+    <param name="odom_used" value="true"/>
+    <param name="imu_used" value="true"/>
+    <param name="vo_used" value="false"/>
+    <param name="output_frame" value="odom"/>
+    <remap from="imu_data" to="/imu/data"/>
+  </node>
+
+<!-- to see the robot model, uncomment the following -->
+	<!--node name="rviz" pkg="rviz" type="rviz" args="-d $(find urdf_tutorial)/urdf.vcg" /-->
+
+</launch>

@@ -1,0 +1,21 @@
+<package>
+  <description brief="tbot_control">
+
+     GUI interface for turtlebot mapping and navigation control
+
+  </description>
+  <author>Pradeesh Lal | Robotics and Automation Center | Temasek Polytechnic</author>
+  <license>GPL</license>
+  <review status="unreviewed" notes=""/>
+  <url>pradeeshlal@hotmail.com</url>
+  <depend package="std_msgs"/>
+  <depend package="rospy"/>
+  <depend package="roscpp"/>
+  <depend package="tf"/>
+  <depend package="nav_msgs"/>
+  <depend package="geometry_msgs"/>	
+  <depend package="move_base_msgs"/>	
+  <depend package="actionlib"/>		
+</package>
+
+

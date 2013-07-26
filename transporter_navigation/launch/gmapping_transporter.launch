@@ -1,0 +1,54 @@
+<launch>
+
+  <!--- Run Move Base (to get path planning params) -->
+  <include file="$(find transporter_navigation)/config/move_base_transporter.launch" />
+
+  <node pkg="tf" type="static_transform_publisher" name="base_footprint_joint" args="0 0 0.118 0 0 0  /base_footprint /base_link 100" />  
+
+  <!--- Run gmapping -->
+    <arg name="scan_topic" default="scan" />
+
+  <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping" output="screen">
+    <param name="odom_frame" value="odom"/>
+    <param name="map_update_interval" value="10.0"/>  <!-- update map every 10 s -->
+    <param name="maxUrange" value="11.0"/> <!-- max usable range of laser -->
+    <param name="sigma" value="0.05"/>
+    <param name="kernelSize" value="1"/>
+    <param name="lstep" value="0.05"/>
+    <param name="astep" value="0.05"/>
+    <param name="iterations" value="5"/>
+    <param name="lsigma" value="0.075"/>
+    <param name="ogain" value="3.0"/>
+    <param name="lskip" value="0"/>
+    <param name="srr" value="0.01"/> <!-- odom error in translation as a fn of translation-->
+    <param name="srt" value="0.02"/> <!-- odom error in translation as a fn of rotation-->
+    <param name="str" value="0.01"/> <!-- odom error in rotation as a fn of translation-->
+    <param name="stt" value="0.02"/> <!-- odom error in rotation as a fn of rotation-->
+    <param name="linearUpdate" value="0.5"/> <!-- process a scan each time the robot translates this far-->
+    <param name="angularUpdate" value="0.436"/> <!-- process a scan each time the robot rotates this far-->
+    <param name="temporalUpdate" value="-1.0"/> <!-- neg val turns off time based update-->
+    <param name="resampleThreshold" value="0.5"/>
+    <param name="particles" value="80"/>
+
+  <!--
+    <param name="xmin" value="-100.0"/>
+    <param name="ymin" value="-100.0"/>
+    <param name="xmax" value="100.0"/>
+    <param name="ymax" value="100.0"/>
+  make the starting size small for the benefit of the Android client's memory...
+  -->
+<!-- initial map size -->
+    <param name="xmin" value="-1.0"/>
+    <param name="ymin" value="-1.0"/>
+    <param name="xmax" value="1.0"/>
+    <param name="ymax" value="1.0"/>
+
+    <param name="delta" value="0.05"/> <!-- map resolution-->
+    <param name="llsamplerange" value="0.01"/>
+    <param name="llsamplestep" value="0.01"/>
+    <param name="lasamplerange" value="0.005"/>
+    <param name="lasamplestep" value="0.005"/>
+    <remap from="scan" to="$(arg scan_topic)"/>
+  </node>
+
+</launch>

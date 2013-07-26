@@ -1,0 +1,29 @@
+<launch>
+  <node name="hokuyo" pkg="hokuyo08LX_node" type="hokuyo08LX_node" respawn="true" output="screen">
+
+    <!-- Starts up faster, but timestamps will be inaccurate. --> 
+    <param name="calibrate_time" type="bool" value="false"/> 
+
+    <!-- Set the port to connect to here -->
+    <param name="port" type="string" value="/dev/ttyACM0"/> 
+    <param name="intensity" type="bool" value="false"/>
+    <param name="frame_id" type="string" value="/laser"/>
+    <param name="min_ang" type="double" value="-2.0"/>
+    <param name="max_ang" type="double" value="2.0"/>
+
+    <param name="start_pub" value="false"/> <!-- set this to false to stop publishing scans-->
+
+    <!-- param name="skip" value="1"/-->
+    <!-- param name="time_offset" type="double" value="-0.053"/-->
+
+	<!--remap from="scan" to="scan_raw"/-->
+  </node>
+  
+  <node pkg="laser_filters" type="scan_to_scan_filter_chain" output="screen" name="laser_filter">
+	<rosparam command="load" file="$(find transporter)/launch/shadow_filter.yaml" />
+
+	<!--remap from="scan" to="scan_raw"/-->
+	<!--remap from="scan_filtered" to="scan"/-->
+  </node>
+
+</launch>

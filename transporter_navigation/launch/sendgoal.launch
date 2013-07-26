@@ -1,0 +1,8 @@
+<launch>
+
+  <arg name="goals_file" default="$(find transporter_navigation)/goals/test_simple.goal"/>
+  <node pkg="transporter_navigation" type="simple_goal_sender" name="simple_goal_sender" output="screen" args="$(arg goals_file)">
+    <param name = "goal_frame" value = "compass"/> <!-- "base_link" "compass"/ -->
+  </node>
+
+</launch>

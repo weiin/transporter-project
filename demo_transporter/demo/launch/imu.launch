@@ -1,0 +1,11 @@
+<launch>
+  <node pkg="demo" type="imu_3dmgx1" name="imu" output="screen">
+
+    <param name="port" value= "/dev/ttyUSB2"/>
+	<param name="has_gyro" value="True" />
+	<param name="orientation_stdev" type="double" value="0.035" />
+	<param name="ang_rate_stdev" type="double" value="0.012" />
+	<param name="accel_stdev" type="double" value="0.098" />
+
+  </node>
+</launch>

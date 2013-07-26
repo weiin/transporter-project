@@ -1,0 +1,9 @@
+<launch>
+  <node pkg="transporter" type="teleop" name="teleop" output="screen">
+
+    <param name="scale_linear" value= ".5"/> <!-- linear speed -->
+    <param name="scale_angular" value= ".5"/> <!-- angular speed -->
+    <!--remap from="cmd_vel" to="joycmd_vel"/-->
+
+  </node>
+</launch>

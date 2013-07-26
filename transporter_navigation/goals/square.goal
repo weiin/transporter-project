@@ -1,0 +1,5 @@
+NumofTgts # TgtType O/B/S GPS(lon[deg],lat[deg]) UTM(lon[m],lat[m]) Pose2D(x[m],y[m],theta[rad])
+NumofTgts 0 TgtType O GPS(0,0) UTM(0,0) Pose2D(2.0,0.0,1.57)
+NumofTgts 0 TgtType O GPS(0,0) UTM(0,0) Pose2D(2.0,2.0,3.14)
+NumofTgts 0 TgtType O GPS(0,0) UTM(0,0) Pose2D(0.0,2.0,-1.57)
+NumofTgts 0 TgtType O GPS(0,0) UTM(0,0) Pose2D(0.0,0.0,0.0)

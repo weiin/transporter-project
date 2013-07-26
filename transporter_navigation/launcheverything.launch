@@ -1,0 +1,6 @@
+<launch>
+  <include file="$(find transporter_navigation)/launch/transporter_configuration.launch"/>
+  <include file="$(find transporter_navigation)/launch/slam_transporter.launch" />
+  <include file="$(find transporter_navigation)/launch/sendwaypoint.launch" />
+  <!--include file="$(find techx_comms)/launch/reporter.launch" /-->
+</launch>

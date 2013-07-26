@@ -1,0 +1,14 @@
+<launch>
+	<param name="imu_pub_rate" value="20"/>
+
+	<node pkg="tf" type="static_transform_publisher" name="laser_joint" args="0.24 0 0.125 0 0 0  /base_link /laser 25" />
+
+    <include file="$(find techx_bot)/launch/EPOS1motor_params.launch" />	          
+
+
+  <!--- Run the laser -->
+  <include file="$(find techx_bot)/launch/hokuyo_base.launch" />
+
+  <include file="$(find transporter)/launch/imu.launch" />
+
+</launch>

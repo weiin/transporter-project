@@ -1,0 +1,7 @@
+<launch>
+  <node pkg="transporter_navigation" type="turn_by_compass" name="turn_by_compass" output="screen">
+      <param name = "do_init_turn" value = "true"/> <!-- set true to turn robot till 'direction' radians (north is 0 radians)-->
+      <param name = "direction" type="double" value = "-1.5708"/> <!--"1.85"/-->
+      <param name = "Kp" type="double" value = "3"/>
+  </node>
+</launch>
